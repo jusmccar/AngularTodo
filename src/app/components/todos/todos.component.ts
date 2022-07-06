@@ -46,6 +46,9 @@ export class TodosComponent implements OnInit {
 
       this.setTodos();
     }
+    else {
+      alert("Todo cannot be blank.");
+    }
   }
 
   setTodos() {
