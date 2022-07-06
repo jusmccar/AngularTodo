@@ -14,7 +14,7 @@ export class TodosComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.todos = [];
+    this.todos = this.getTodos();
   }
 
   toggleDone(id: number) {
@@ -23,21 +23,36 @@ export class TodosComponent implements OnInit {
         val.completed = !val.completed;
       }
 
+      this.setTodos();
+
       return val;
     })
   }
 
   deleteTodo(id: number) {
     this.todos = this.todos.filter((val, i) => i !== id);
+
+    this.setTodos();
   }
 
-  addTodo () {
+  addTodo() {
     if (this.inputTodo !== "") {
       this.todos.push({
         content: this.inputTodo,
         completed: false
       });
+
       this.inputTodo = "";
+
+      this.setTodos();
     }
+  }
+
+  setTodos() {
+    localStorage.setItem("todos", JSON.stringify(this.todos));
+  }
+
+  getTodos() {
+    return JSON.parse(localStorage.getItem("todos")!);
   }
 }
