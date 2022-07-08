@@ -56,6 +56,6 @@ export class TodosComponent implements OnInit {
   }
 
   getTodos() {
-    return JSON.parse(localStorage.getItem("todos")!);
+    return JSON.parse(localStorage.getItem("todos")!) ?? [];
   }
 }
