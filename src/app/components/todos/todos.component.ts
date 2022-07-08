@@ -8,7 +8,7 @@ import { Todo } from "../../models/todo";
 })
 export class TodosComponent implements OnInit {
 
-  todos!: Todo[];
+  todos: Todo[] = [];
   inputTodo: string = "";
 
   constructor() { }
@@ -56,6 +56,7 @@ export class TodosComponent implements OnInit {
   }
 
   getTodos() {
-    return JSON.parse(localStorage.getItem("todos")!) ?? [];
+    const s = localStorage.getItem("todos");
+    return s ? JSON.parse(s) : [];
   }
 }
